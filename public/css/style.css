@@ -1051,7 +1051,7 @@ body {
     height: fit-content;
     align-items: center;
     justify-content: space-between;
-    /* margin-top: 20px; */
+    margin-top: 30px;
   }
 
   .container-room .left-cont .footer .copycode-cont {
@@ -1115,7 +1115,7 @@ body {
   .open-sidebar {
     /* transform: rotate(-90deg); */
     position: fixed !important;
-    bottom: 10vh !important;
+    bottom: 14vh !important;
     right: 1px !important;
     padding: 2px 0px !important;
     width: 45px;
@@ -1136,7 +1136,7 @@ body {
       width: calc(100% - 20px) !important;
       position: fixed !important;
       left: 10px !important;
-      bottom: 25px !important;
+      bottom: 10px !important;
     }
 
     .copycode-cont {
@@ -1144,7 +1144,7 @@ body {
       height: 45px !important;
       position: fixed !important;
       top: calc(100vh - 15vh - 125px) !important;
-      left: -85px !important;
+      left: -90px !important;
     }
 
     .open-sidebar {
