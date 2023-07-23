@@ -42,18 +42,19 @@ body {
   background-color: #ffffff;
 }
 
-navbar .logo {
+ .logo {
   font-size: 28px;
   color: #393e46;
   font-weight: bold;
   padding: 0 12%;
   margin-top: 32px;
+  margin-left:16px;
 }
 
 .main {
   display: flex;
   padding: 0 12%;
-  margin-top: 20vh;
+  margin-top: 60px;
   width: 100%;
 }
 
@@ -79,20 +80,20 @@ navbar .logo {
   margin-top: 60px;
   font-size: 24px;
   font-weight: bold;
-  background-color: #4ecca3;
+  background-color: #3490ff;
   color: white;
   text-align: center;
   padding: 10px 20px;
   border: none;
   border-radius: 10px;
-  border: 2px solid #4ecca3;
+  border: 2px solid #3490ff;
   transition: 0.3s;
 }
 
 .main .create-join .createroom-butt:hover {
   background-color: white;
-  border: 2px solid #4ecca3;
-  color: #4ecca3;
+  border: 2px solid #3490ff;
+  color: #3490ff;
   cursor: pointer;
 }
 
@@ -110,8 +111,8 @@ navbar .logo {
   border: none;
   border-radius: 10px;
   background-color: white;
-  border: 2px solid #4ecca3;
-  color: #4ecca3;
+  border: 2px solid #3490ff;
+  color: #3490ff;
 }
 
 .main .create-join .createroom-clicked:focus {
@@ -170,8 +171,8 @@ navbar .logo {
   width: 100%;
   background-color: #393e46;
   border-radius: 10px;
-  /* object-fit: cover; */
-  object-fit: contain;
+  object-fit: cover;
+  /* object-fit: contain; */
 }
 
 .main .video-cont .settings {
@@ -182,7 +183,7 @@ navbar .logo {
 }
 
 .main .video-cont .settings .device {
-  background-color: #4ecca3;
+  background-color: #3490ff;
   border-radius: 100px;
   padding: 10px;
   width: 40px;
@@ -215,7 +216,11 @@ navbar .logo {
   .main {
     flex-direction: column;
   }
-
+  .logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .main .create-join {
     width: 100%;
     margin-right: 0;
@@ -265,7 +270,7 @@ navbar .logo {
   font-weight: bold;
   padding: 10px;
   width: 90%;
-  border-bottom: 3px solid #4ecca3;
+  border-bottom: 3px solid #3490ff;
   color: #393e46;
   height: 40px;
 }
@@ -280,7 +285,7 @@ navbar .logo {
   margin-top: 30px;
   color: #ffffff;
   font-weight: bold;
-  background-color: #4ecca3;
+  background-color: #3490ff;
   padding: 12px 20px;
   border-radius: 10px;
   transition: opacity 0.5s;
@@ -665,7 +670,7 @@ navbar .logo {
 }
 
 .container-room .left-cont .footer .utils .audio {
-  background-color: #4ecca3;
+  background-color: #3490ff;
   text-align: center;
   color: white;
   padding: 10px;
@@ -681,7 +686,7 @@ navbar .logo {
 }
 
 .container-room .left-cont .footer .utils .novideo {
-  background-color: #4ecca3;
+  background-color: #3490ff;
   text-align: center;
   margin-left: 10px;
   color: white;
@@ -760,10 +765,10 @@ navbar .logo {
 }
 
 .container-room .left-cont .footer .copycode-cont .roomcode {
-  color: #4ecca3;
+  color: #3490ff;
   padding: 10px 20px;
   background-color: white;
-  border-bottom: 3px solid #4ecca3;
+  border-bottom: 3px solid #3490ff;
   font-weight: bold;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -776,7 +781,7 @@ navbar .logo {
   width: 100px;
   text-align: center;
   color: white;
-  background-color: #4ecca3;
+  background-color: #3490ff;
   border: none;
   font-weight: bold;
   outline: none;
@@ -866,7 +871,7 @@ navbar .logo {
 
 .container-room .right-cont .chat-cont .message .info .username {
   font-weight: bold;
-  color: #4ecca3;
+  color: #3490ff;
 }
 
 .container-room .right-cont .chat-cont .message .info .time {
@@ -880,7 +885,7 @@ navbar .logo {
 
 .container-room .right-cont .participants-cont {
   background-color: #ffffff;
-  height: 84vh;
+  height: 90vh;
   padding: 10px;
   padding-top: 10px;
   overflow-y: scroll;
@@ -902,7 +907,7 @@ navbar .logo {
 
 .container-room .right-cont .participants-cont .joined .info .username {
   font-weight: bold;
-  color: #4ecca3;
+  color: #3490ff;
 }
 
 .container-room .right-cont .participants-cont .joined .info .time {
@@ -937,7 +942,7 @@ navbar .logo {
   font-size: 0.85rem;
   padding: 4px 10px;
   border: none;
-  border-bottom: 3px solid #4ecca3;
+  border-bottom: 3px solid #3490ff;
   color: #393e46;
 }
 
@@ -950,7 +955,7 @@ navbar .logo {
   padding: 5px 20px;
   border: none;
   background-color: white;
-  color: #4ecca3;
+  color: #3490ff;
   font-weight: bold;
   font-size: 0.85rem;
   border-radius: 2px;
@@ -1119,6 +1124,7 @@ navbar .logo {
 
   @media (max-width:830px) {
 
+
     .container-room .left-cont .video-cont {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1130,21 +1136,21 @@ navbar .logo {
       width: calc(100% - 20px) !important;
       position: fixed !important;
       left: 10px !important;
-      bottom: 0 !important;
+      bottom: 25px !important;
     }
 
     .copycode-cont {
       transform: rotate(90deg);
-      height: 40px !important;
+      height: 45px !important;
       position: fixed !important;
-      top: calc(100vh - 14vh - 95px) !important;
-      left: -95px !important;
+      top: calc(100vh - 15vh - 125px) !important;
+      left: -85px !important;
     }
 
     .open-sidebar {
       /* transform: rotate(-90deg); */
       position: fixed !important;
-      bottom: 10vh !important;
+      bottom: 14vh !important;
       right: 1px !important;
       padding: 2px 0px !important;
       width: 45px;
@@ -1188,11 +1194,6 @@ navbar .logo {
   overflow: hidden;
 }
 
-html {
-  position: fixed;
-  max-width: 100vw;
-  max-height: 100vh;
-  overflow: hidden;
-}
+
 
 /*# sourceMappingURL=style.css.map */
