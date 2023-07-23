@@ -25,7 +25,7 @@
     </div>
     <div class="container-room">
         <div class="left-cont">
-
+            <!-- <div class="room-logo"><img src="./images/logo.png" alt=""></div> -->
             <div class="video-cont-single" id="vcont">
                 <div class="video-box">
                     <video class="video-frame" id="vd1" autoplay playsinline>
@@ -78,16 +78,12 @@
                         <i class="fas fa-phone-slash"></i>
                         <span class="tooltiptext">Leave Call</span>
                     </div>
-                    
+
                 </div>
-                <div class="open-sidebar">
-                    <div class="board-icon tooltip">
-                        <i class="fas fa-comment"></i>
-                        <span class="tooltiptext">Chat</span>
-                    </div>
-                    <div class="board-icon tooltip">
-                        <i class="fas fa-user"></i>
-                        <span class="tooltiptext">Attendies</span>
+                <div class="open-sidebar" onclick="toggleSidebars()">
+                    <div class="board-icon tooltip chat-sidebar">
+                        <i class="fas fa-comments"></i>
+                        <span class="tooltiptext">open chat</span>
                     </div>
                 </div>
 
@@ -104,14 +100,25 @@
 
 
             </div>
+            <div id="participantsContainer" class="participants-container" style="display: none;">
+                <!-- Your participants content here -->
+                <div class="participants-cont">
 
-            <div class="chat-cont">
+                </div>
+            </div>
 
+            <div id="chatContainer" class="chat-container">
+                <!-- Your chat content here -->
+                <div class="chat-cont">
+
+                </div>
+                <div class="chat-input-cont">
+                    <div class="ci-cont"><input type="text" class="chat-input" placeholder="Type chat here.."></div>
+                    <div class="ci-send"><button class="chat-send">Send</button></div>
+                </div>
             </div>
-            <div class="chat-input-cont">
-                <div class="ci-cont"><input type="text" class="chat-input" placeholder="Type chat here.."></div>
-                <div class="ci-send"><button class="chat-send">Send</button></div>
-            </div>
+
+
         </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>

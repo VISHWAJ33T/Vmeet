@@ -32,7 +32,7 @@ io.on("connect", (socket) => {
       socket
         .to(roomid)
         .emit(
-          "message",
+          "joined",
           `${username} joined the room.`,
           "Bot",
           moment().format("h:mm a")
@@ -110,7 +110,7 @@ io.on("connect", (socket) => {
     socket
       .to(socketroom[socket.id])
       .emit(
-        "message",
+        "joined",
         `${socketname[socket.id]} left the chat.`,
         `Bot`,
         moment().format("h:mm a")
