@@ -1338,6 +1338,7 @@ body {
   right: 50px !important;
   margin-left: auto !important;
   margin-right: auto !important;
+  box-shadow: -20px -20px 60px 50px #0f0f0f;
 }
 
 @media (max-width: 830px) {
@@ -1346,9 +1347,10 @@ body {
   }
 }
 
-.pop-out-div::before {
-  background-color: rgba(0, 0, 0, 0.742);
-}
+/* .pop-out-div::before {
+  border: 10px solid red;
+  background-color: #b12c2c;
+} */
 
 
 /* style.css | http://localhost:3000/css/style.css */
