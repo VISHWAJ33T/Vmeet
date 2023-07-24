@@ -42,13 +42,13 @@ body {
   background-color: #ffffff;
 }
 
- .logo {
+.logo {
   font-size: 28px;
   color: #393e46;
   font-weight: bold;
   padding: 0 12%;
   margin-top: 32px;
-  margin-left:16px;
+  margin-left: 16px;
 }
 
 .main {
@@ -216,11 +216,13 @@ body {
   .main {
     flex-direction: column;
   }
-  .logo{
+
+  .logo {
     display: flex;
     align-items: center;
     justify-content: center;
   }
+
   .main .create-join {
     width: 100%;
     margin-right: 0;
@@ -652,7 +654,7 @@ body {
 .container-room .left-cont .footer {
   position: relative;
   display: flex;
-  margin-top: 20px;
+  margin-top: 30px;
   /* padding-bottom: 20px; */
 }
 
@@ -1012,6 +1014,10 @@ body {
 }
 
 @media (max-width:1150px) {
+  .left-cont {
+    padding-right: 50px;
+  }
+
   .container-room .left-cont .video-cont {
     height: 80vh;
   }
@@ -1140,11 +1146,11 @@ body {
     }
 
     .copycode-cont {
-      transform: rotate(90deg);
-      height: 45px !important;
+      transform: rotate(-90deg);
+      height: 42px !important;
       position: fixed !important;
-      top: calc(100vh - 15vh - 125px) !important;
-      left: -90px !important;
+      top: calc(100vh - 15vh - 200px) !important;
+      left: calc(100vw - 133px) !important;
     }
 
     .open-sidebar {
@@ -1194,6 +1200,151 @@ body {
   overflow: hidden;
 }
 
+.left-cont {
+  padding-left: 15px !important;
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+}
+
+@media (max-width: 1150px) {
+  @media (max-width: 830px) {
+    .utils {
+      /* bottom: 10px !important; */
+      bottom: 5px !important;
+    }
+  }
+}
+
+.video-cont {
+  /* padding-top: 20px; */
+  padding-top: 10px;
+}
+
+.container-room .left-cont .video-cont .video-box {
+  /* min-height: 200px; */
+  min-height: 300px;
+}
+
+.container-room .left-cont .video-cont .video-box .video-frame {
+  /* min-height: 200px; */
+  /* object-fit: contain; */
+  min-height: 300px;
+  border: 2px solid white;
+  /* object-fit: cover; */
+}
+
+.container-room .left-cont .video-cont .video-box .nametag {
+  /* left: 10px; */
+  /* bottom: 10px; */
+  left: 20px;
+  bottom: 13px;
+}
+
+@media (max-width: 500px) {
+  .container-room .left-cont .video-cont {
+    /* height: 89vh; */
+    height: 87vh;
+  }
+}
 
 
-/*# sourceMappingURL=style.css.map */
+/* style.css | http://localhost:3000/css/style.css */
+
+@media (max-width: 1150px) {
+  .container-room .left-cont .footer .utils {
+    /* justify-content: center; */
+    justify-content: space-evenly;
+  }
+}
+
+.container-room .left-cont .video-cont-single {
+  height: calc(84vh - 20px);
+  height: calc(84vh);
+}
+
+.left-cont {
+  padding-right: 15px;
+}
+
+
+/* style.css | http://localhost:3000/css/style.css */
+
+@media (max-width: 500px) {
+  .container-room .left-cont .video-cont {
+    margin-top: 11px;
+  }
+}
+
+@media (max-width: 1150px) {
+  .open-sidebar {
+    transform: rotate(-90deg);
+    bottom: 18vh !important;
+
+  }
+
+  @media (max-width: 830px) {
+    .open-sidebar {
+      /* bottom: 14vh !important; */
+      bottom: 12vh !important;
+    }
+
+    .copycode-cont {
+      /* height: 42px !important; */
+      /* top: calc(100vh - 15vh - 200px) !important; */
+      height: 47px !important;
+      top: calc(100vh - 15vh - 180px) !important;
+    }
+
+    /* style.css | http://localhost:3000/css/style.css */
+
+    .container-room .right-cont .chat-input-cont {
+      /* padding: 12px; */
+      padding: 9px;
+      margin-bottom: 50px;
+    }
+
+    .container-room .right-cont .chat-cont {
+      /* height: 84vh; */
+      height: 80vh;
+    }
+
+  }
+}
+
+.active-div {
+  background-color: #3490ff !important;
+  color: white !important;
+  transition: background-color 0.3s;
+}
+
+.active-div div {
+  background-color: #3490ff !important;
+  color: white !important;
+  transition: background-color 0.3s;
+}
+
+.active-div div i {
+  background-color: #3490ff !important;
+  color: white !important;
+  transition: background-color 0.3s;
+}
+
+.pop-out-div {
+  position: absolute !important;
+  z-index: 100 !important;
+  height: 83vh !important;
+  width: fit-content !important;
+  left: 0 !important;
+  right: 50px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+@media (max-width: 830px) {
+  .pop-out-div{
+    height: 87vh !important;
+  }
+}
+
+.pop-out-div::before {
+  background-color: rgba(0, 0, 0, 0.742);
+}

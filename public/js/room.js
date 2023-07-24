@@ -682,29 +682,75 @@ cutCall.addEventListener("click", () => {
 });
 
 // Add event listeners for toggling visibility
-document.querySelector('.attendies').addEventListener('click', function() {
-    document.getElementById('participantsContainer').style.display = 'block';
-    document.getElementById('chatContainer').style.display = 'none';
-  });
-  
-  document.querySelector('.chats').addEventListener('click', function() {
-    document.getElementById('participantsContainer').style.display = 'none';
-    document.getElementById('chatContainer').style.display = 'block';
-  });
-  
+document.querySelector(".attendies").addEventListener("click", function () {
+  document.getElementById("participantsContainer").style.display = "block";
+  document.getElementById("chatContainer").style.display = "none";
+  document.querySelector(".attendies").classList.add("active-div");
+  document.querySelector(".chats").classList.remove("active-div");
+});
 
-  // Function to toggle right-cont and open-sidebar translations
-  function toggleSidebars() {
-      const rightCont = document.querySelector('.right-cont');
-      const openSidebar = document.querySelector('.open-sidebar');
-      const translateValue = rightCont.style.transform;
+document.querySelector(".chats").addEventListener("click", function () {
+  document.getElementById("participantsContainer").style.display = "none";
+  document.getElementById("chatContainer").style.display = "block";
+  document.querySelector(".chats").classList.add("active-div");
+  document.querySelector(".attendies").classList.remove("active-div");
+});
 
-      if (translateValue === 'translateX(-75vw)') {
-          rightCont.style.transform = 'translateX(0)';
-          openSidebar.style.transform = 'translateX(0)';
-      } else {
-          rightCont.style.transform = 'translateX(-75vw)';
-          openSidebar.style.transform = 'translateX(-75vw)';
-      }
+// Function to toggle right-cont and open-sidebar translations
+function toggleSidebars() {
+  const rightCont = document.querySelector(".right-cont");
+  const openSidebar = document.querySelector(".open-sidebar");
+  const copyCont = document.querySelector(".copycode-cont");
+  const translateValue = rightCont.style.transform;
+
+  if (translateValue === "translateX(-75vw)") {
+    rightCont.style.transform = "translateX(0)";
+    openSidebar.style.transform = "translateX(0) rotate(-90deg)";
+    openSidebar.classList.remove("active-div");
+    copyCont.style.transform = "translateX(0) rotate(-90deg)";
+  } else {
+    rightCont.style.transform = "translateX(-75vw)";
+    openSidebar.style.transform = "translateX(-75vw) rotate(-90deg)";
+    openSidebar.classList.add("active-div");
+    copyCont.style.transform = "translateX(-75vw) rotate(-90deg)";
   }
-  
+}
+// Function to handle the click event on video elements
+function handleVideoClick(event) {
+  const clickedVideo = event.target;
+  if (clickedVideo.tagName === "VIDEO") {
+    // Find the parent div and add the "pop-out-div" class to it
+    const parentDiv = clickedVideo.closest(".video-box");
+    if (parentDiv) {
+      // Remove "pop-out-div" class from all sibling video boxes
+      const siblingVideoBoxes = parentDiv.parentElement.querySelectorAll(".video-box");
+      siblingVideoBoxes.forEach((box) => {
+        if (box !== parentDiv && box.classList.contains("pop-out-div")) {
+          box.classList.remove("pop-out-div");
+        }
+      });
+      parentDiv.classList.add("pop-out-div");
+    }
+  }
+}
+
+// Add event listener to the videoContainer for click events
+videoContainer.addEventListener("click", handleVideoClick);
+
+// Function to handle the click event on the document
+function handleDocumentClick(event) {
+  const clickedElement = event.target;
+  // Find the parent div with the class "video-box"
+  const parentDiv = clickedElement.closest(".video-box");
+  if (!parentDiv) {
+    // If the click target is not inside the parent div, remove the "pop-out-div" class from all video boxes
+    const videoBoxes = document.querySelectorAll(".video-box");
+    videoBoxes.forEach((box) => {
+      box.classList.remove("pop-out-div");
+    });
+  }
+}
+
+// Add event listener to the document for click events
+document.addEventListener("click", handleDocumentClick);
+
