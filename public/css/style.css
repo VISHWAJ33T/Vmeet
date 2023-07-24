@@ -1373,6 +1373,12 @@ body {
       /* bottom: 5px !important; */
       top: calc(100vh - 65px) !important;
     }
+
+    .pop-out-div {
+      height: 88vh !important;
+      top: 10px;
+      left: 10px !important;
+    }
   }
 }
 
