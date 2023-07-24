@@ -1339,12 +1339,39 @@ body {
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
 @media (max-width: 830px) {
-  .pop-out-div{
+  .pop-out-div {
     height: 87vh !important;
   }
 }
 
 .pop-out-div::before {
   background-color: rgba(0, 0, 0, 0.742);
+}
+
+
+/* style.css | http://localhost:3000/css/style.css */
+
+@media (max-width: 1150px) {
+  .open-sidebar {
+    /* bottom: 18vh !important; */
+    top: calc(82vh - 45px) !important;
+  }
+
+  @media (max-width: 830px) {
+    .open-sidebar {
+      /* bottom: 12vh !important; */
+      top: calc(88vh - 45px) !important;
+    }
+  }
+}
+
+@media (max-width: 1150px) {
+  @media (max-width: 830px) {
+    .utils {
+      /* bottom: 5px !important; */
+      top: calc(100vh - 65px) !important;
+    }
+  }
 }
