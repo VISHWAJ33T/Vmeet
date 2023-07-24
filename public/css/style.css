@@ -1375,3 +1375,11 @@ body {
     }
   }
 }
+
+/* style.css | http://localhost:3000/css/style.css */
+
+@media (max-width: 1150px) {
+  .container-room .left-cont .footer .copycode-cont {
+    right: -87px;
+  }
+}
