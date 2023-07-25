@@ -146,6 +146,20 @@ navbar {
     align-items: center;
 }
 
+@media screen and (max-width: 768px) {
+    .buttons {
+        transform: scale(0.8);
+    }
+
+    navbar {
+        padding: 0px 0px 0px 30px;
+    }
+
+    .buttons {
+        width: 240px;
+    }
+}
+
 .buttons {
     display: flex;
     min-width: 230px;
@@ -191,7 +205,7 @@ navbar {
 
 .checkbox-label {
     background-color: #111;
-  box-shadow: 0px 0px 1px 1px black;
+    box-shadow: 0px 0px 1px 1px black;
     width: 50px;
     height: 26px;
     border-radius: 50px;
