@@ -171,7 +171,7 @@ navbar {
 
 .login {
     padding: 10px 20px;
-    background-color: darkblue;
+    background-color: #004ead;
     border-radius: 10px;
     border: none;
     cursor: pointer;
@@ -180,12 +180,12 @@ navbar {
 .login:hover {
     transform: translateY(-2px);
     transition: 1s;
-    background-color: #165aaa;
+    background-color: #338ffe;
 }
 
 .signup {
     padding: 10px 20px;
-    background-color: darkblue;
+    background-color: #004ead;
     border-radius: 10px;
     border: none;
     cursor: pointer;
@@ -194,7 +194,7 @@ navbar {
 .signup:hover {
     transform: translateY(-2px);
     transition: 1s;
-    background-color: #165aaa;
+    background-color: #338ffe;
 }
 
 /* Toggle Mode */
