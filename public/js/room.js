@@ -751,6 +751,3 @@ function handleDocumentClick(event) {
   }
 }
 
-// Add event listener to the document for click events
-document.addEventListener("click", handleDocumentClick);
-

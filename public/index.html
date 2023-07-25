@@ -6,21 +6,25 @@
     <title>QuickMeet - Video Call & Chat</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dark-style.css" id="theme-style">
     <script src="https://kit.fontawesome.com/6510466b6c.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body>
     <navbar>
-        <!-- <div class="logo">QuickMeet</div> -->
         <div class="logo"><img src="./images/logo.png" height="110px" alt="Logo" /></div>
-    </navbar>
-    <!-- <div class="landing"> -->
-    <!-- <div class="head-cont unselectable">
-            Welcome to QuickMeet!
-        </div> -->
+        <div class="buttons">
 
+            <input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="checkbox-label">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+                <span class="ball"></span>
+            </label>
+            <button class="login"><span>Login</span></button>
+            <button class="signup"><span>Signup</span></button>
+        </div>
+    </navbar>
     <div class="main">
         <div class="create-join">
             <div class="text">
@@ -40,22 +44,41 @@
             </div>
         </div>
     </div>
+    <script>
+        // Function to set the theme for index.html
+        function setIndexTheme(theme) {
+            const themeStyle = document.getElementById('theme-style');
+            themeStyle.href = `css/${theme}-style.css`;
+            // Store the theme preference in local storage
+            localStorage.setItem('theme', theme);
+        }
 
-    <!-- <div class="main-cont">
+        // Function to toggle the theme when checkbox is clicked
+        function toggleTheme() {
+            const checkbox = document.getElementById('checkbox');
+            if (checkbox.checked) {
+                setIndexTheme('light');
+                // Send the theme update to room.html
+                localStorage.setItem('theme', 'light');
+            } else {
+                setIndexTheme('dark');
+                // Send the theme update to room.html
+                localStorage.setItem('theme', 'dark');
+            }
+        }
 
-            <form class="roomform" action="room.html" method="GET">
-                <div class="formcont">
-                    <input type="text" name="name" placeholder="Enter your name" id="username" class="inputtext"><br>
-                    
-                    <button type="submit" class="butt unselectable" id="joinroom">Join Room</button>
-                    
-                </div>
-            </form>
+        // Add event listener to the checkbox to toggle the theme
+        const checkbox = document.getElementById('checkbox');
+        checkbox.addEventListener('change', toggleTheme);
 
-        </div> -->
+        // Function to get the stored theme preference from local storage
+        function getStoredTheme() {
+            return localStorage.getItem('theme') || 'dark';
+        }
 
-    <!-- </div> -->
-
+        // Initialize the theme based on the stored preference when the page loads
+        setIndexTheme(getStoredTheme());
+    </script>
     <script src="js/landing.js"></script>
 </body>
 

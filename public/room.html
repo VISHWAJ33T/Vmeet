@@ -6,7 +6,9 @@
     <title>QuickMeet Room</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dark-style.css" id="theme-style">
+
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
     <style>
         html {
             overflow: hidden;
@@ -137,7 +139,23 @@
         </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
+    <script>
+        // Function to set the theme for room.html
+        function setRoomTheme(theme) {
+            const roomThemeStyle = document.getElementById('theme-style');
+            roomThemeStyle.href = `css/${theme}-style.css`;
+        }
+
+        // Function to get the stored theme preference from local storage
+        function getStoredTheme() {
+            return localStorage.getItem('theme') || 'dark';
+        }
+
+        // Initialize the theme based on the stored preference when the page loads
+        setRoomTheme(getStoredTheme());
+    </script>
     <script src="js/room.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.58/darkreader.min.js"></script>
 </body>
 
 </html>
