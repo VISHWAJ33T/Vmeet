@@ -29,6 +29,41 @@
         const params = new URLSearchParams(location.search);
         if (!params.get("room")) location.href = "/";
     </script>
+    <script>
+        // Function to get the stored JWT token from LocalStorage
+        function getToken() {
+          return localStorage.getItem("token");
+        }
+      
+        // Function to handle protected API requests
+        function handleProtectedRequest() {
+          const token = getToken();
+          if (!token) {
+            console.log("No token found in LocalStorage.");
+            return;
+          }
+      
+          fetch("/auth/signup", {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              // Handle the response data here
+              console.log("Response from protected API:", data);
+            })
+            .catch((error) => {
+              // Handle fetch error if any
+              console.log("Error occurred during protected API request:", error);
+            });
+        }
+      
+        // Call the function to make the protected API request
+        handleProtectedRequest();
+      </script>
 </head>
 
 <body style="visibility: hidden;">
@@ -37,7 +72,6 @@
             <div class="head-name">Enter a Name</div>
             <input type="text" class="name-field" placeholder="Type here.." id="name-field"></input><br>
             <button class="continue-name">Continue</button>
-
         </div>
     </div>
     <div class="container-room">
@@ -139,6 +173,7 @@
         </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="js/room.js"></script>
     <script>
         // Function to set the theme for room.html
         function setRoomTheme(theme) {
@@ -160,8 +195,6 @@
 
         initializeTheme();
     </script>
-    <script src="js/room.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.58/darkreader.min.js"></script>
 </body>
 
 </html>

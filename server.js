@@ -4,12 +4,21 @@ const http = require("http");
 const moment = require("moment");
 const socketio = require("socket.io");
 const PORT = process.env.PORT || 3000;
-
 const app = express();
 const server = http.createServer(app);
+const connectDB = require("./db/connect");
+// const authenticateUser = require("./middleware/authentication");
+const authRouter = require("./routes/auth");
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.get("/room.html", (req, res) => {
+  // app.get("/room.html", authenticateUser, (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "room.html"));
+});
+app.use(express.static(path.join(__dirname, "public")));
+app.use("/auth", authRouter);
 
 const io = socketio(server);
-app.use(express.static(path.join(__dirname, "public")));
 
 let rooms = {};
 let socketroom = {};
@@ -129,6 +138,18 @@ io.on("connect", (socket) => {
   });
 });
 
-server.listen(PORT, () =>
-  console.log(`Server is up and running on port ${PORT}`)
-);
+const start = async () => {
+  try {
+    const mongoURI =
+      "mongodb+srv://VISHWAJEET:Qwerty123@cluster0.8g7q2zy.mongodb.net/?retryWrites=true&w=majority";
+    // "mongodb://127.0.0.1:27017";
+    await connectDB(mongoURI);
+    server.listen(PORT, () =>
+      console.log(`Server is up and running on port ${PORT}`)
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+start();

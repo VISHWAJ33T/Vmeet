@@ -376,8 +376,6 @@ function handleVideoAnswer(answer, sid) {
   connections[sid].setRemoteDescription(ans);
 }
 
-//Thanks to (https://github.com/miroslavpejic85) for ScreenShare Code
-
 screenShareButt.addEventListener("click", () => {
   screenShareToggle();
 });
@@ -732,6 +730,7 @@ function handleVideoClick(event) {
       parentDiv.classList.add("pop-out-div");
     }
   }
+
 }
 
 // Add event listener to the videoContainer for click events
@@ -751,3 +750,5 @@ function handleDocumentClick(event) {
   }
 }
 
+// Add event listener to the document for click events
+document.addEventListener("click", handleDocumentClick);

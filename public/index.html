@@ -13,7 +13,15 @@
 <body style="visibility: hidden;">
     <navbar>
         <div class="logo"><img src="./images/logo.png" height="110px" alt="Logo" /></div>
-        <div class="buttons">
+        <div class="buttons" id="button-container">
+            <!-- <input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="checkbox-label">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+                <span class="ball"></span>
+            </label> -->
+
+            <!-- <div class="buttons"> -->
 
             <input type="checkbox" class="checkbox" id="checkbox">
             <label for="checkbox" class="checkbox-label">
@@ -21,8 +29,10 @@
                 <i class="fas fa-sun"></i>
                 <span class="ball"></span>
             </label>
-            <button class="login"><span>Login</span></button>
-            <button class="signup"><span>Signup</span></button>
+            <a href="/login.html" style="cursor: pointer;text-decoration: none;">
+                <button class="login"><span>Login</span></button></a>
+            <a href="/signup.html" style="cursor: pointer;text-decoration: none;">
+                <button class="signup"><span>Signup</span></button></a>
         </div>
     </navbar>
     <div class="main">
@@ -86,6 +96,73 @@
         initializeTheme();
     </script>
     <script src="js/landing.js"></script>
+    <script>
+        function updateButtonsAfterLogin(username) {
+            const buttonContainer = document.getElementById('button-container');
+
+            // Remove the Signup button
+            const signupButton = document.querySelector('button.signup');
+            const loginButton = document.querySelector('button.login');
+            signupButton.parentNode.removeChild(signupButton);
+            loginButton.parentNode.removeChild(loginButton);
+
+            // Add the username and "Sign Out" link (replacing the Signup button)
+            const usernameElement = document.createElement('p');
+            usernameElement.textContent = "Hi " + username;
+            usernameElement.classList.add('username');
+
+            const signOutLink = document.createElement('a');
+            const signOutButton = document.createElement('button');
+            signOutButton.classList.add('signup');
+            const signOutSpan = document.createElement('span');
+            signOutSpan.textContent = 'Sign Out';
+
+            signOutButton.appendChild(signOutSpan);
+            signOutLink.appendChild(signOutButton);
+            signOutLink.href = '/'; // Redirect to the homepage on sign out
+
+            buttonContainer.prepend(usernameElement);
+            buttonContainer.appendChild(signOutLink);
+        }
+
+        // Function to get the username from the URL query parameter
+        function getUsernameFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('username');
+        }
+
+        // Function to handle the login logic
+        function handleLogin() {
+            // Implement your login logic here
+
+            // After a successful login, get the username from the URL and update the buttons
+            const username = getUsernameFromURL();
+            if (username) {
+                updateButtonsAfterLogin(username);
+            }
+        }
+
+        // Function to handle the signup logic
+        function handleSignup() {
+            // Implement your signup logic here
+
+            // After a successful signup, get the username from the URL and update the buttons
+            const username = getUsernameFromURL();
+            if (username) {
+                updateButtonsAfterLogin(username);
+            }
+        }
+
+        // ... Your existing JavaScript code ...
+
+        // When the landing page loads, get the username from the URL and update the buttons if available
+        document.addEventListener('DOMContentLoaded', () => {
+            const usernameFromURL = getUsernameFromURL();
+            if (usernameFromURL) {
+                updateButtonsAfterLogin(usernameFromURL);
+            }
+        });
+    </script>
 </body>
 
 </html>

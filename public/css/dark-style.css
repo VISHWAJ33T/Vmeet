@@ -7,6 +7,9 @@
 
 /* Array.from(document.querySelectorAll('.darkreader')).map((n) => n.textContent).join('\n'); */
 /* For Firefox */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
 [data-darkreader-inline-bgcolor] {
     background-color: var(--darkreader-inline-bgcolor) !important;
@@ -65,6 +68,18 @@
     --darkreader-neutral-text: #eae3d9;
     --darkreader-selection-background: #165aaa;
     --darkreader-selection-text: #fbf5ec;
+}
+
+* {
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+*::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
 }
 
 html {
@@ -139,7 +154,6 @@ select:-webkit-autofill {
     font-family: "Open Sans", sans-serif;
 }
 
-/* New CSS */
 navbar {
     display: flex;
     justify-content: space-around;
@@ -148,6 +162,10 @@ navbar {
 
 @media screen and (max-width: 768px) {
     .buttons {
+        transform: scale(0.8);
+    }
+
+    .logo {
         transform: scale(0.8);
     }
 
@@ -160,6 +178,8 @@ navbar {
     }
 }
 
+
+
 .buttons {
     display: flex;
     min-width: 230px;
@@ -167,6 +187,32 @@ navbar {
     justify-content: space-evenly;
     align-items: center;
     height: fit-content;
+}
+
+.buttons {
+    /* min-width: 230px; */
+    min-width: none;
+    width: fit-content;
+    justify-content: space-between;
+}
+
+.buttons p,
+.buttons button {
+    margin: 0px 10px !important;
+}
+
+@media (max-width:400px) {
+
+    .buttons p,
+    .buttons button {
+        margin: 0px 10px !important;
+    }
+
+    navbar {
+        padding: 0;
+        flex-wrap: wrap;
+    }
+
 }
 
 .login {
@@ -240,7 +286,6 @@ navbar {
     transform: translateX(24px);
 }
 
-/* ************************************************************************************************ */
 .mr-1 {
     margin-right: 10px;
 }
@@ -796,7 +841,7 @@ body {
 }
 
 .container-room .left-cont .video-cont-single {
-    height: calc(84vh - 20px);
+    height: calc(87vh);
     position: relative;
     top: 20px;
 }
@@ -1391,14 +1436,22 @@ body {
     }
 }
 
+.container-room .left-cont .video-cont-single .video-box .video-frame {
+    width: 68vw;
+}
+
 @media (max-width: 1150px) {
     .container-room .left-cont .footer .utils {
         justify-content: space-evenly;
     }
+
+    .pop-out-div {
+        width: calc(100vw - 80px) !important;
+    }
 }
 
 .container-room .left-cont .video-cont-single {
-    height: calc(84vh);
+    height: calc(87vh);
 }
 
 .left-cont {
