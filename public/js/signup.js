@@ -1,3 +1,58 @@
+const handleSignupFormSubmit = async (event) => {
+  event.preventDefault();
+  const form = event.target;
+  const formData = new FormData(form);
+
+  // Convert form data to a JSON object
+  const jsonData = {};
+  formData.forEach((value, key) => {
+    jsonData[key] = value;
+  });
+
+  try {
+    const response = await fetch("/auth/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(jsonData), // Convert data to JSON string
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      if (data.created) {
+        const token = data.token; // Assuming the JWT token is sent as 'token' in the response
+        document.cookie = `token=${token}; path=/; max-age=3600`; // Cookie will expire in 1 hour
+
+        // Get the username from the input field directly
+        const usernameInput = document.getElementById("loginUsername");
+        const username = usernameInput.value;
+
+        // Redirect to the landing page on successful registration
+        window.location.href = `/?username=${username}`;
+      } else {
+        // Display an error message when registration fails
+        displayError("Registration failed. Please try again.");
+      }
+    } else {
+      // Display an error message when registration fails
+      displayError("Registration failed. Please try again.");
+    }
+  } catch (error) {
+    // Display an error message when an error occurs during registration
+    displayError("Error occurred during registration. Please try again later.");
+  }
+};
+
+const displayError = (message) => {
+  const errorElement = document.getElementById("error-message");
+  errorElement.textContent = message;
+  errorElement.style.display = "block";
+};
+
+const signupForm = document.getElementById("signupForm");
+signupForm.addEventListener("submit", handleSignupFormSubmit);
+// *************************************************************************************************
 var usernameLabel = document.querySelector("#loginUsernameLabel"),
   username = document.querySelector("#loginUsername"),
   passwordLabel = document.querySelector("#loginPasswordLabel"),
@@ -179,52 +234,52 @@ function calculateFaceMove(e) {
     y: -noseY,
     rotation: mouthR,
     transformOrigin: "center center",
-    ease: Expo.easeOut
+    ease: Expo.easeOut,
   });
   TweenMax.to(mouth, 1, {
     x: -mouthX,
     y: -mouthY,
     rotation: mouthR,
     transformOrigin: "center center",
-    ease: Expo.easeOut
+    ease: Expo.easeOut,
   });
   TweenMax.to(chin, 1, {
     x: -chinX,
     y: -chinY,
     scaleY: chinS,
-    ease: Expo.easeOut
+    ease: Expo.easeOut,
   });
   TweenMax.to(face, 1, {
     x: -faceX,
     y: -faceY,
     skewX: -faceSkew,
     transformOrigin: "center top",
-    ease: Expo.easeOut
+    ease: Expo.easeOut,
   });
   TweenMax.to(eyebrow, 1, {
     x: -faceX,
     y: -faceY,
     skewX: -eyebrowSkew,
     transformOrigin: "center top",
-    ease: Expo.easeOut
+    ease: Expo.easeOut,
   });
   TweenMax.to(outerEarL, 1, {
     x: outerEarX,
     y: -outerEarY,
-    ease: Expo.easeOut
+    ease: Expo.easeOut,
   });
   TweenMax.to(outerEarR, 1, { x: outerEarX, y: outerEarY, ease: Expo.easeOut });
   TweenMax.to(earHairL, 1, {
     x: -outerEarX,
     y: -outerEarY,
-    ease: Expo.easeOut
+    ease: Expo.easeOut,
   });
   TweenMax.to(earHairR, 1, { x: -outerEarX, y: outerEarY, ease: Expo.easeOut });
   TweenMax.to(hair, 1, {
     x: hairX,
     scaleY: hairS,
     transformOrigin: "center bottom",
-    ease: Expo.easeOut
+    ease: Expo.easeOut,
   });
 
   document.body.removeChild(div);
@@ -242,14 +297,14 @@ function onUsernameInput(e) {
       TweenMax.to([mouthBG, mouthOutline, mouthMaskPath], 1, {
         morphSVG: mouthMediumBG,
         shapeIndex: 8,
-        ease: Expo.easeOut
+        ease: Expo.easeOut,
       });
       TweenMax.to(tooth, 1, { x: 0, y: 0, ease: Expo.easeOut });
       TweenMax.to(tongue, 1, { x: 0, y: 1, ease: Expo.easeOut });
       TweenMax.to([eyeL, eyeR], 1, {
         scaleX: 0.85,
         scaleY: 0.85,
-        ease: Expo.easeOut
+        ease: Expo.easeOut,
       });
       eyeScale = 0.85;
     }
@@ -257,7 +312,7 @@ function onUsernameInput(e) {
       mouthStatus = "large";
       TweenMax.to([mouthBG, mouthOutline, mouthMaskPath], 1, {
         morphSVG: mouthLargeBG,
-        ease: Expo.easeOut
+        ease: Expo.easeOut,
       });
       TweenMax.to(tooth, 1, { x: 3, y: -2, ease: Expo.easeOut });
       TweenMax.to(tongue, 1, { y: 2, ease: Expo.easeOut });
@@ -265,21 +320,21 @@ function onUsernameInput(e) {
         scaleX: 0.65,
         scaleY: 0.65,
         ease: Expo.easeOut,
-        transformOrigin: "center center"
+        transformOrigin: "center center",
       });
       eyeScale = 0.65;
     } else {
       mouthStatus = "medium";
       TweenMax.to([mouthBG, mouthOutline, mouthMaskPath], 1, {
         morphSVG: mouthMediumBG,
-        ease: Expo.easeOut
+        ease: Expo.easeOut,
       });
       TweenMax.to(tooth, 1, { x: 0, y: 0, ease: Expo.easeOut });
       TweenMax.to(tongue, 1, { x: 0, y: 1, ease: Expo.easeOut });
       TweenMax.to([eyeL, eyeR], 1, {
         scaleX: 0.85,
         scaleY: 0.85,
-        ease: Expo.easeOut
+        ease: Expo.easeOut,
       });
       eyeScale = 0.85;
     }
@@ -288,7 +343,7 @@ function onUsernameInput(e) {
     TweenMax.to([mouthBG, mouthOutline, mouthMaskPath], 1, {
       morphSVG: mouthSmallBG,
       shapeIndex: 9,
-      ease: Expo.easeOut
+      ease: Expo.easeOut,
     });
     TweenMax.to(tooth, 1, { x: 0, y: 0, ease: Expo.easeOut });
     TweenMax.to(tongue, 1, { y: 0, ease: Expo.easeOut });
@@ -393,7 +448,7 @@ function spreadFingers() {
     rotation: 30,
     x: -9,
     y: -2,
-    ease: Power2.easeInOut
+    ease: Power2.easeInOut,
   });
 }
 
@@ -403,7 +458,7 @@ function closeFingers() {
     rotation: 0,
     x: 0,
     y: 0,
-    ease: Power2.easeInOut
+    ease: Power2.easeInOut,
   });
 }
 
@@ -416,7 +471,7 @@ function coverEyes() {
     y: 10,
     rotation: 0,
     ease: Quad.easeOut,
-    delay: 0.1
+    delay: 0.1,
   });
   TweenMax.to(bodyBG, 0.45, { morphSVG: bodyBGchanged, ease: Quad.easeOut });
   eyesCovered = true;
@@ -433,7 +488,7 @@ function uncoverEyes() {
     delay: 0.1,
     onComplete: function () {
       TweenMax.set([armL, armR], { visibility: "hidden" });
-    }
+    },
   });
   TweenMax.to(bodyBG, 0.45, { morphSVG: bodyBG, ease: Quad.easeOut });
   eyesCovered = false;
@@ -446,7 +501,7 @@ function resetFace() {
     y: 0,
     scaleX: 1,
     scaleY: 1,
-    ease: Expo.easeOut
+    ease: Expo.easeOut,
   });
   TweenMax.to(mouth, 1, { x: 0, y: 0, rotation: 0, ease: Expo.easeOut });
   TweenMax.to(chin, 1, { x: 0, y: 0, scaleY: 1, ease: Expo.easeOut });
@@ -455,7 +510,7 @@ function resetFace() {
     x: 0,
     y: 0,
     scaleY: 1,
-    ease: Expo.easeOut
+    ease: Expo.easeOut,
   });
 }
 
@@ -473,7 +528,7 @@ function startBlinking(delay) {
     transformOrigin: "center center",
     onComplete: function () {
       startBlinking(12);
-    }
+    },
   });
 }
 
@@ -515,7 +570,7 @@ function getPosition(el) {
   //console.log("xPos: " + xPos + ", yPos: " + yPos);
   return {
     x: xPos,
-    y: yPos
+    y: yPos,
   };
 }
 
@@ -569,13 +624,13 @@ function initLoginForm() {
     x: -93,
     y: 220,
     rotation: 105,
-    transformOrigin: "top left"
+    transformOrigin: "top left",
   });
   TweenMax.set(armR, {
     x: -93,
     y: 220,
     rotation: -105,
-    transformOrigin: "top right"
+    transformOrigin: "top right",
   });
 
   // set initial mouth property (fixes positioning bug)
@@ -597,7 +652,7 @@ function initLoginForm() {
       rotation: 30,
       x: -9,
       y: -2,
-      ease: Power2.easeInOut
+      ease: Power2.easeInOut,
     });
   }
 
