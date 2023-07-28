@@ -40,7 +40,7 @@ createButton.addEventListener('click', (e) => {
     }, 500);
 
     //const name = nameField.value;
-    location.href = `/room.html?room=${uuidv4()}`;
+    location.href = `/room?room=${uuidv4()}`;
 });
 
 joinBut.addEventListener('click', (e) => {
@@ -50,7 +50,7 @@ joinBut.addEventListener('click', (e) => {
         return;
     }
     const code = codeCont.value;
-    location.href = `/room.html?room=${code}`;
+    location.href = `/room?room=${code}`;
 })
 
 codeCont.addEventListener('change', (e) => {
@@ -60,6 +60,56 @@ codeCont.addEventListener('change', (e) => {
         return;
     }
 })
+
+// cam.addEventListener('click', () => {
+//     if (camAllowed) {
+//         mediaConstraints = { video: false, audio: micAllowed ? true : false };
+//         navigator.mediaDevices.getUserMedia(mediaConstraints)
+//             .then(localstream => {
+//                 videoCont.srcObject = localstream;
+//             })
+
+//         cam.classList = "nodevice";
+//         cam.innerHTML = `<i class="fas fa-video-slash"></i>`;
+//         camAllowed = 0;
+//     }
+//     else {
+//         mediaConstraints = { video: true, audio: micAllowed ? true : false };
+//         navigator.mediaDevices.getUserMedia(mediaConstraints)
+//             .then(localstream => {
+//                 videoCont.srcObject = localstream;
+//             })
+
+//         cam.classList = "device";
+//         cam.innerHTML = `<i class="fas fa-video"></i>`;
+//         camAllowed = 1;
+//     }
+// })
+
+// mic.addEventListener('click', () => {
+//     if (micAllowed) {
+//         mediaConstraints = { video: camAllowed ? true : false, audio: false };
+//         navigator.mediaDevices.getUserMedia(mediaConstraints)
+//             .then(localstream => {
+//                 videoCont.srcObject = localstream;
+//             })
+
+//         mic.classList = "nodevice";
+//         mic.innerHTML = `<i class="fas fa-microphone-slash"></i>`;
+//         micAllowed = 0;
+//     }
+//     else {
+//         mediaConstraints = { video: camAllowed ? true : false, audio: true };
+//         navigator.mediaDevices.getUserMedia(mediaConstraints)
+//             .then(localstream => {
+//                 videoCont.srcObject = localstream;
+//             })
+
+//         mic.innerHTML = `<i class="fas fa-microphone"></i>`;
+//         mic.classList = "device";
+//         micAllowed = 1;
+//     }
+// })
 
 cam.addEventListener('click', () => {
     if (camAllowed) {

@@ -1,8 +1,8 @@
-var usernameLabel = document.querySelector("#signupUsernameLabel"),
-  username = document.querySelector("#signupUsername"),
-  passwordLabel = document.querySelector("#signupPasswordLabel"),
-  password = document.querySelector("#signupPassword"),
-  showPasswordCheck = document.querySelector("#showPasswordCheckSignup"),
+var usernameLabel = document.querySelector("#loginUsernameLabel"),
+  username = document.querySelector("#loginUsername"),
+  passwordLabel = document.querySelector("#loginPasswordLabel"),
+  password = document.querySelector("#loginPassword"),
+  showPasswordCheck = document.querySelector("#showPasswordCheckLogin"),
   showPasswordToggle = document.querySelector("#showPasswordToggle"),
   mySVG = document.querySelector(".svgContainer"),
   twoFingers = document.querySelector(".twoFingers"),
@@ -535,7 +535,7 @@ function isMobileDevice() {
   return check;
 }
 
-function initSignupForm() {
+function initLoginForm() {
   // some measurements for the svg's elements
   svgCoords = getPosition(mySVG);
   usernameCoords = getPosition(username);
@@ -602,7 +602,7 @@ function initSignupForm() {
   }
 
   // clear the console
-  console.clear();
+  // console.clear();
 }
 
-initSignupForm();
+initLoginForm();

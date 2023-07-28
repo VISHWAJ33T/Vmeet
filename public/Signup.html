@@ -5,16 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="./css/signup.css">
+    <link rel="stylesheet" type="text/css" href="/css/dark-signup.css" id="theme-style-signup">
 </head>
 
 <body>
-
-    <head>
-        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <form action="/auth/signup" id="signupForm" class="form">
+    <form id="signupForm" action="/auth/signup" class="form">
         <div class="svgContainer">
             <div>
                 <svg class="mySVG" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -183,37 +178,59 @@
         </div>
 
         <div class="inputGroup inputGroup1">
-            <label for="signupUsername" id="signupUsernameLabel">Username</label>
-            <input type="text" id="signupUsername" name="name" maxlength="254" required />
-
+            <label for="loginUsername" id="loginUsernameLabel">Username</label>
+            <input type="text" id="loginUsername" maxlength="254" name="name" required />
         </div>
+
         <div class="inputGroup inputGroup2">
-            <label for="signupPassword" id="signupPasswordLabel">Password</label>
-            <input type="password" name="password" id="password" required />
-            <label id="showPasswordToggle" for="showPasswordCheckSignup">Show
-                <input id="showPasswordCheckSignup" type="checkbox" />
+            <label for="loginPassword" id="loginPasswordLabel">Password</label>
+            <input type="password" id="loginpassword" name="password" required />
+            <label id="showPasswordToggle" for="showPasswordCheckLogin">Show
+                <input id="showPasswordCheckLogin" type="checkbox" />
                 <div class="indicator"></div>
             </label>
         </div>
         <div class="inputGroup inputGroup3">
-            <button type="submit" id="signup">Sign Up</button>
+            <button id="signup" type="submit">Sign Up</button>
         </div>
         <div id="error-message" class="error-message"></div>
+        <div style="text-decoration: none; text-align: center"><span>Already have a account?
+            </span><span><a href="/login" style="text-decoration: none; color:#4eb8dd"> Login</a></span>
+        </div>
     </form>
-    <!-- <script src="//s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js?r=182"></script> -->
+    <script>
+        // Function to set the theme for room.html
+        function setRoomTheme(theme) {
+            const roomThemeStyle = document.getElementById('theme-style-signup');
+            roomThemeStyle.href = `css/${theme}-signup.css`;
+        }
 
+        // Function to get the stored theme preference from local storage
+        function getStoredTheme() {
+            return localStorage.getItem('theme') || 'dark';
+        }
+
+        // Initialize the theme based on the stored preference when the page loads
+        function initializeTheme() {
+            const storedTheme = getStoredTheme();
+            setRoomTheme(storedTheme);
+            document.body.style.visibility = "visible"; // Make the content visible after setting the theme
+        }
+
+        initializeTheme();
+    </script>
     <script>
         const handleSignupFormSubmit = async (event) => {
             event.preventDefault();
             const form = event.target;
             const formData = new FormData(form);
-    
+
             // Convert form data to a JSON object
             const jsonData = {};
             formData.forEach((value, key) => {
                 jsonData[key] = value;
             });
-    
+
             try {
                 const response = await fetch("/auth/signup", {
                     method: "POST",
@@ -222,17 +239,17 @@
                     },
                     body: JSON.stringify(jsonData), // Convert data to JSON string
                 });
-    
+
                 if (response.ok) {
                     const data = await response.json();
                     if (data.created) {
                         const token = data.token; // Assuming the JWT token is sent as 'token' in the response
-                        localStorage.setItem("token", token);
-    
+                        document.cookie = `token=${token}; path=/; max-age=3600`; // Cookie will expire in 1 hour
+
                         // Get the username from the input field directly
-                        const usernameInput = document.getElementById('signupUsername'); // Replace 'loginUsername' with the actual input ID for the username
+                        const usernameInput = document.getElementById('loginUsername');
                         const username = usernameInput.value;
-    
+
                         // Redirect to the landing page on successful registration
                         window.location.href = `/?username=${username}`;
                     } else {
@@ -248,20 +265,18 @@
                 displayError("Error occurred during registration. Please try again later.");
             }
         };
-    
+
         const displayError = (message) => {
             const errorElement = document.getElementById("error-message");
             errorElement.textContent = message;
             errorElement.style.display = "block";
         };
-    
+
         const signupForm = document.getElementById("signupForm");
         signupForm.addEventListener("submit", handleSignupFormSubmit);
     </script>
-    
-    <script src="./js/signup.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
-
+    <script src="/js/gsap.min.js"></script>
+    <script src="/js/signup.js"></script>
 </body>
 
 </html>

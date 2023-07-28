@@ -2,7 +2,7 @@ const User = require("../models/User");
 const { StatusCodes } = require("http-status-codes");
 
 const signup = async (req, res) => {
-  console.log("Received signup request");
+  // console.log("Received signup request");
   const { name, password } = req.body;
 
   if (!name || !password) {
@@ -20,10 +20,10 @@ const signup = async (req, res) => {
     }
 
     const user = await User.create({ name, password });
-    console.log("User created:", user);
+    // console.log("User created:", user);
 
     const token = user.createJWT();
-    console.log("JWT created:", token);
+    // console.log("JWT created:", token);
 
     return res.status(StatusCodes.CREATED).json({
       user: { name: user.name },
@@ -63,7 +63,7 @@ const login = async (req, res) => {
     }
 
     const token = user.createJWT();
-    console.log(token);
+    // console.log(token);
     res.status(StatusCodes.OK).json({
       user: { name: user.name },
       token,

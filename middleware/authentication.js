@@ -8,22 +8,27 @@ const authenticateUser = async (req, res, next) => {
 
     if (!token && req.headers.cookie) {
       const cookieArray = req.headers.cookie.split("; ");
-      const tokenCookie = cookieArray.find((cookie) => cookie.startsWith("token="));
+      const tokenCookie = cookieArray.find((cookie) =>
+        cookie.startsWith("token=")
+      );
       if (tokenCookie) {
         token = tokenCookie.split("=")[1];
       }
     }
 
     if (!token) {
-      return res
-        .status(StatusCodes.UNAUTHORIZED)
-        .send("Unauthorized: No token provided.");
+      return res.status(StatusCodes.UNAUTHORIZED).redirect("/login");
     }
-    console.log("token: " + token);
-    const decoded = jwt.verify(token, "jwtsecret123");
-    console.log("decoded: " + decoded);
-    const user = await User.findOne({ _id: decoded._id, "tokens.token": token });
-    console.log("user:" + user);
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // const decoded = jwt.verify(token, "jwtsecret123");
+    // console.log(decoded);
+    // Modify the following line to retrieve the user based on the decoded token data
+    const user = await User.findOne({
+      _id: decoded.userId,
+      // _id: decoded._id,
+      // "tokens.token": token,
+    });
 
     if (!user) {
       throw new Error();
@@ -33,9 +38,8 @@ const authenticateUser = async (req, res, next) => {
     req.token = token;
     next();
   } catch (error) {
-    return res
-      .status(StatusCodes.UNAUTHORIZED)
-      .send("Unauthorized: Invalid token.");
+    return res.status(StatusCodes.UNAUTHORIZED).redirect("/login");
+    // .send("Unauthorized: Invalid token.");
   }
 };
 

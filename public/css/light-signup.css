@@ -91,6 +91,7 @@ form label {
   font-family: inherit;
 }
 
+form input[type=email],
 form input[type=text],
 form input[type=number],
 form input[type=url],
@@ -234,3 +235,5 @@ form .inputGroup2 #showPasswordToggle input:disabled~.indicator {
 form .inputGroup2 #showPasswordToggle input:disabled~.indicator:after {
   visibility: hidden;
 }
+
+/*# sourceMappingURL=login.css.map */

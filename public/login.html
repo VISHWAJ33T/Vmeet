@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <link rel="stylesheet" type="text/css" href="/css/dark-login.css" id="theme-style-login">
 </head>
 
 <body>
@@ -181,6 +181,7 @@
             <label for="loginUsername" id="loginUsernameLabel">Username</label>
             <input type="text" id="loginUsername" maxlength="254" name="name" required />
         </div>
+
         <div class="inputGroup inputGroup2">
             <label for="loginPassword" id="loginPasswordLabel">Password</label>
             <input type="password" id="loginPassword" name="password" required />
@@ -192,10 +193,32 @@
         <div class="inputGroup inputGroup3">
             <button id="login" type="submit">Log in</button>
         </div>
-        <!-- Error message element -->
         <div id="error-message" class="error-message"></div>
+        <div style="text-decoration: none; text-align: center"><span>Don't have a account?
+            </span><span><a href="/signup" style="text-decoration: none; color:#4eb8dd"> Signup</a></span>
+        </div>
     </form>
+    <script>
+        // Function to set the theme for room.html
+        function setRoomTheme(theme) {
+            const roomThemeStyle = document.getElementById('theme-style-login');
+            roomThemeStyle.href = `css/${theme}-login.css`;
+        }
 
+        // Function to get the stored theme preference from local storage
+        function getStoredTheme() {
+            return localStorage.getItem('theme') || 'dark';
+        }
+
+        // Initialize the theme based on the stored preference when the page loads
+        function initializeTheme() {
+            const storedTheme = getStoredTheme();
+            setRoomTheme(storedTheme);
+            document.body.style.visibility = "visible"; // Make the content visible after setting the theme
+        }
+
+        initializeTheme();
+    </script>
     <script>
         const handleLoginFormSubmit = async (event) => {
             event.preventDefault();
@@ -219,10 +242,12 @@
 
                 if (response.ok) {
                     const data = await response.json();
-                    console.log(data);
+                    // console.log(data);
                     if (data.token) {
+
                         // Store the token in localStorage
                         const token = data.token;
+                        document.cookie = `token=${token}; path=/; max-age=3600`; // Cookie will expire in 1 hour
                         // Get the username from the input field directly
                         const usernameInput = document.getElementById('loginUsername');
                         const username = usernameInput.value;
@@ -260,10 +285,7 @@
         const loginForm = document.getElementById('loginForm');
         loginForm.addEventListener('submit', handleLoginFormSubmit);
     </script>
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
-    <!-- <script src="//s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js?r=182"></script> -->
+    <script src="/js/gsap.min.js"></script>
     <script src="/js/login.js"></script>
 </body>
 

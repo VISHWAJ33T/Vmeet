@@ -601,7 +601,7 @@ function initLoginForm() {
     });
   }
 
-  console.clear();
+  // console.clear();
 }
 
 initLoginForm();

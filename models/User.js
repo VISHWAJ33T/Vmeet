@@ -24,11 +24,12 @@ UserSchema.pre("save", async function () {
 UserSchema.methods.createJWT = function () {
   return jwt.sign(
     { userId: this._id, name: this.name },
-    "jwtsecret123"
-    // process.env.JWT_SECRET,
-    // {
-    //   expiresIn: process.env.JWT_LIFETIME,
-    // }
+    // "jwtsecret123"
+    process.env.JWT_SECRET
+    ,{
+      expiresIn: process.env.JWT_LIFETIME
+      // expiresIn: "30d",
+    }
   );
 };
 
