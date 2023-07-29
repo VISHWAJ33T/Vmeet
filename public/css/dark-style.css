@@ -824,12 +824,13 @@ body {
 }
 
 .container-room .left-cont .video-cont .video-box .video-off {
-    color: white;
-    inset: 40% 0px 10px;
+    color: rgb(214, 52, 52);
+    inset: 42% 0px 10px;
     position: absolute;
     font-weight: bold;
     margin-left: auto;
     margin-right: auto;
+    font-size: 4rem;
 }
 
 .container-room .left-cont .video-cont .video-box .mute-icon {
@@ -872,12 +873,13 @@ body {
 }
 
 .container-room .left-cont .video-cont-single .video-box .video-off {
-    color: white;
-    inset: 40% 0px 10px;
-    font-weight: bold;
+    color: rgb(214, 52, 52);
+    inset: 42% 0px 10px;
     position: absolute;
+    font-weight: bold;
     margin-left: auto;
     margin-right: auto;
+    font-size: 4rem;
 }
 
 .container-room .left-cont .video-cont-single .video-box .mute-icon {
@@ -1712,7 +1714,7 @@ body {
 .container-room .left-cont {
     background-color: rgb(48, 52, 54);
 }
-
+/* 
 .container-room .left-cont .whiteboard-cont #whiteboard {
     background-color: rgb(24, 26, 27);
 }
@@ -1755,14 +1757,16 @@ body {
 
 .container-room .left-cont .whiteboard-cont .colors-cont .grey {
     background-color: rgb(96, 104, 108);
-}
+} */
 
 .container-room .left-cont .whiteboard-cont .colors-cont .eraser {
-    color: rgb(205, 200, 194);
+    color: black;
+    /* color: rgb(205, 200, 194); */
 }
 
 .container-room .left-cont .whiteboard-cont .colors-cont .clearboard {
-    color: rgb(205, 200, 194);
+    color: black;
+    /* color: rgb(205, 200, 194); */
 }
 
 .container-room .left-cont .video-cont .video-box {
@@ -1778,7 +1782,7 @@ body {
 }
 
 .container-room .left-cont .video-cont .video-box .video-off {
-    color: rgb(232, 230, 227);
+    color: rgb(218, 70, 70);
 }
 
 .container-room .left-cont .video-cont .video-box .mute-icon {
@@ -1798,7 +1802,7 @@ body {
 }
 
 .container-room .left-cont .video-cont-single .video-box .video-off {
-    color: rgb(232, 230, 227);
+    color: rgb(218, 70, 70);
 }
 
 .container-room .left-cont .video-cont-single .video-box .mute-icon {
@@ -2022,3 +2026,26 @@ body {
 .sr-only {
     border-color: initial;
 }
+
+
+/* dark-style.css | http://localhost:3000/css/dark-style.css */
+
+.container-room .left-cont .video-cont-single .video-box .video-frame {
+    /* width: 68vw; */
+    width: 100%;
+  }
+  
+  @media (max-width: 1150px) {
+    @media (max-width: 830px) {
+      .pop-out-div {
+        /* height: 88vh !important; */
+        height: 85vh !important;
+      }
+    }
+  }
+  
+  .pop-out-div {
+    /* right: 50px !important; */
+    right: 10px !important;
+  }
+  

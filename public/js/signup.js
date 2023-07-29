@@ -1,64 +1,9 @@
-const handleSignupFormSubmit = async (event) => {
-  event.preventDefault();
-  const form = event.target;
-  const formData = new FormData(form);
-
-  // Convert form data to a JSON object
-  const jsonData = {};
-  formData.forEach((value, key) => {
-    jsonData[key] = value;
-  });
-
-  try {
-    const response = await fetch("/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(jsonData), // Convert data to JSON string
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      if (data.created) {
-        const token = data.token; // Assuming the JWT token is sent as 'token' in the response
-        document.cookie = `token=${token}; path=/; max-age=3600`; // Cookie will expire in 1 hour
-
-        // Get the username from the input field directly
-        const usernameInput = document.getElementById("loginUsername");
-        const username = usernameInput.value;
-
-        // Redirect to the landing page on successful registration
-        window.location.href = `/?username=${username}`;
-      } else {
-        // Display an error message when registration fails
-        displayError("Registration failed. Please try again.");
-      }
-    } else {
-      // Display an error message when registration fails
-      displayError("Registration failed. Please try again.");
-    }
-  } catch (error) {
-    // Display an error message when an error occurs during registration
-    displayError("Error occurred during registration. Please try again later.");
-  }
-};
-
-const displayError = (message) => {
-  const errorElement = document.getElementById("error-message");
-  errorElement.textContent = message;
-  errorElement.style.display = "block";
-};
-
-const signupForm = document.getElementById("signupForm");
-signupForm.addEventListener("submit", handleSignupFormSubmit);
-// *************************************************************************************************
-var usernameLabel = document.querySelector("#loginUsernameLabel"),
-  username = document.querySelector("#loginUsername"),
-  passwordLabel = document.querySelector("#loginPasswordLabel"),
-  password = document.querySelector("#loginPassword"),
-  showPasswordCheck = document.querySelector("#showPasswordCheckLogin"),
-  showPasswordToggle = document.querySelector("#showPasswordToggle"),
+var usernameLabel = document.querySelector("#signupUsernameLabel"),
+  username = document.querySelector("#signupUsername"),
+  password1Label = document.querySelector("#signupPassword1Label"),
+  password1 = document.querySelector("#signupPassword1"),
+  showPassword1Check = document.querySelector("#showPassword1Check"),
+  showPassword1Toggle = document.querySelector("#showPassword1Toggle"),
   mySVG = document.querySelector(".svgContainer"),
   twoFingers = document.querySelector(".twoFingers"),
   armL = document.querySelector(".armL"),
@@ -97,7 +42,7 @@ var activeElement,
   blinking,
   eyeScale = 1,
   eyesCovered = false,
-  showPasswordClicked = false;
+  showPassword1Clicked = false;
 var eyeLCoords,
   eyeRCoords,
   noseCoords,
@@ -378,35 +323,35 @@ function onUsernameLabelClick(e) {
   activeElement = "username";
 }
 
-function onPasswordFocus(e) {
-  activeElement = "password";
+function onPassword1Focus(e) {
+  activeElement = "password1";
   if (!eyesCovered) {
     coverEyes();
   }
 }
 
-function onPasswordBlur(e) {
+function onPassword1Blur(e) {
   activeElement = null;
   setTimeout(function () {
-    if (activeElement == "toggle" || activeElement == "password") {
+    if (activeElement == "toggle" || activeElement == "password1") {
     } else {
       uncoverEyes();
     }
   }, 100);
 }
 
-function onPasswordToggleFocus(e) {
+function onPassword1ToggleFocus(e) {
   activeElement = "toggle";
   if (!eyesCovered) {
     coverEyes();
   }
 }
 
-function onPasswordToggleBlur(e) {
+function onPassword1ToggleBlur(e) {
   activeElement = null;
-  if (!showPasswordClicked) {
+  if (!showPassword1Clicked) {
     setTimeout(function () {
-      if (activeElement == "password" || activeElement == "toggle") {
+      if (activeElement == "password1" || activeElement == "toggle") {
       } else {
         uncoverEyes();
       }
@@ -414,30 +359,30 @@ function onPasswordToggleBlur(e) {
   }
 }
 
-function onPasswordToggleMouseDown(e) {
-  showPasswordClicked = true;
+function onPassword1ToggleMouseDown(e) {
+  showPassword1Clicked = true;
 }
 
-function onPasswordToggleMouseUp(e) {
-  showPasswordClicked = false;
+function onPassword1ToggleMouseUp(e) {
+  showPassword1Clicked = false;
 }
 
-function onPasswordToggleChange(e) {
+function onPassword1ToggleChange(e) {
   setTimeout(function () {
-    // if checkbox is checked, show password
+    // if checkbox is checked, show password1
     if (e.target.checked) {
-      password.type = "text";
+      password1.type = "text";
       spreadFingers();
 
-      // if checkbox is off, hide password
+      // if checkbox is off, hide password1
     } else {
-      password.type = "password";
+      password1.type = "password";
       closeFingers();
     }
   }, 100);
 }
 
-function onPasswordToggleClick(e) {
+function onPassword1ToggleClick(e) {
   //console.log("click: " + e.target.id);
   e.target.focus();
 }
@@ -590,7 +535,7 @@ function isMobileDevice() {
   return check;
 }
 
-function initLoginForm() {
+function initSignupForm() {
   // some measurements for the svg's elements
   svgCoords = getPosition(mySVG);
   usernameCoords = getPosition(username);
@@ -606,18 +551,18 @@ function initLoginForm() {
   username.addEventListener("input", onUsernameInput);
   usernameLabel.addEventListener("click", onUsernameLabelClick);
 
-  // handle events for password input
-  password.addEventListener("focus", onPasswordFocus);
-  password.addEventListener("blur", onPasswordBlur);
-  //passwordLabel.addEventListener('click', onPasswordLabelClick);
+  // handle events for password1 input
+  password1.addEventListener("focus", onPassword1Focus);
+  password1.addEventListener("blur", onPassword1Blur);
+  //password1Label.addEventListener('click', onPassword1LabelClick);
 
-  // handle events for password checkbox
-  showPasswordCheck.addEventListener("change", onPasswordToggleChange);
-  showPasswordCheck.addEventListener("focus", onPasswordToggleFocus);
-  showPasswordCheck.addEventListener("blur", onPasswordToggleBlur);
-  showPasswordCheck.addEventListener("click", onPasswordToggleClick);
-  showPasswordToggle.addEventListener("mouseup", onPasswordToggleMouseUp);
-  showPasswordToggle.addEventListener("mousedown", onPasswordToggleMouseDown);
+  // handle events for password1 checkbox
+  showPassword1Check.addEventListener("change", onPassword1ToggleChange);
+  showPassword1Check.addEventListener("focus", onPassword1ToggleFocus);
+  showPassword1Check.addEventListener("blur", onPassword1ToggleBlur);
+  showPassword1Check.addEventListener("click", onPassword1ToggleClick);
+  showPassword1Toggle.addEventListener("mouseup", onPassword1ToggleMouseUp);
+  showPassword1Toggle.addEventListener("mousedown", onPassword1ToggleMouseDown);
 
   // move arms to initial positions
   TweenMax.set(armL, {
@@ -643,10 +588,10 @@ function initLoginForm() {
   // will be used as the furthest point avatar will look to the right
   usernameScrollMax = username.scrollWidth;
 
-  // check if we're on mobile/tablet, if so then show password initially
+  // check if we're on mobile/tablet, if so then show password1 initially
   if (isMobileDevice()) {
-    password.type = "text";
-    showPasswordCheck.checked = true;
+    password1.type = "text";
+    showPassword1Check.checked = true;
     TweenMax.set(twoFingers, {
       transformOrigin: "bottom left",
       rotation: 30,
@@ -656,8 +601,7 @@ function initLoginForm() {
     });
   }
 
-  // clear the console
   // console.clear();
 }
 
-initLoginForm();
+initSignupForm();

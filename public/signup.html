@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/css/light-signup.css">
     <link rel="stylesheet" type="text/css" href="/css/dark-signup.css" id="theme-style-signup">
 </head>
 
 <body>
-    <form id="signupForm" action="/auth/signup" class="form">
+    <form id="signupForm" action="/auth/signup">
         <div class="svgContainer">
             <div>
                 <svg class="mySVG" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -179,15 +180,15 @@
         </div>
 
         <div class="inputGroup inputGroup1">
-            <label for="loginUsername" id="loginUsernameLabel">Username</label>
-            <input type="text" id="loginUsername" maxlength="254" name="name" required />
+            <label for="signupUsername" id="signupUsernameLabel">Username</label>
+            <input type="text" id="signupUsername" maxlength="254" name="name" required />
         </div>
 
         <div class="inputGroup inputGroup2">
-            <label for="loginPassword" id="loginPasswordLabel">Password</label>
-            <input type="password" id="loginpassword" name="password" required />
-            <label id="showPasswordToggle" for="showPasswordCheckLogin">Show
-                <input id="showPasswordCheckLogin" type="checkbox" />
+            <label for="signupPassword1" id="signupPassword1Label">Password</label>
+            <input type="password" id="signupPassword1" name="password" required />
+            <label id="showPassword1Toggle" for="showPassword1Check">Show
+                <input id="showPassword1Check" type="checkbox" />
                 <div class="indicator"></div>
             </label>
         </div>
@@ -248,7 +249,7 @@
                         document.cookie = `token=${token}; path=/; max-age=3600`; // Cookie will expire in 1 hour
 
                         // Get the username from the input field directly
-                        const usernameInput = document.getElementById('loginUsername');
+                        const usernameInput = document.getElementById('signupUsername');
                         const username = usernameInput.value;
 
                         // Redirect to the landing page on successful registration

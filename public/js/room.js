@@ -289,7 +289,9 @@ function handleVideoOffer(offer, sid, cname, micinf, vidinf) {
       muteIcon.id = `mute${sid}`;
       videoOff.id = `vidoff${sid}`;
       muteIcon.innerHTML = `<i class="fas fa-microphone-slash"></i>`;
-      videoOff.innerHTML = "Video Off";
+      // videoOff.innerHTML = `${cName[sid]}`;
+      videoOff.innerHTML = `<i class="fas fa-video-slash"></i>`;
+      // videoOff.innerHTML = "Video Off";
       vidCont.classList.add("video-box");
       newvideo.classList.add("video-frame");
       newvideo.autoplay = true;
@@ -465,8 +467,10 @@ socket.on("join room", async (conc, cnames, micinfo, videoinfo) => {
           vidCont.id = sid;
           muteIcon.id = `mute${sid}`;
           videoOff.id = `vidoff${sid}`;
+          // videoOff.innerHTML = `${cName[sid]}`;
           muteIcon.innerHTML = `<i class="fas fa-microphone-slash"></i>`;
-          videoOff.innerHTML = "Video Off";
+          // videoOff.innerHTML = "Video Off";
+          videoOff.innerHTML = `<i class="fas fa-video-slash"></i>`;
           vidCont.classList.add("video-box");
           newvideo.classList.add("video-frame");
           newvideo.autoplay = true;
@@ -721,7 +725,8 @@ function handleVideoClick(event) {
     const parentDiv = clickedVideo.closest(".video-box");
     if (parentDiv) {
       // Remove "pop-out-div" class from all sibling video boxes
-      const siblingVideoBoxes = parentDiv.parentElement.querySelectorAll(".video-box");
+      const siblingVideoBoxes =
+        parentDiv.parentElement.querySelectorAll(".video-box");
       siblingVideoBoxes.forEach((box) => {
         if (box !== parentDiv && box.classList.contains("pop-out-div")) {
           box.classList.remove("pop-out-div");
@@ -730,7 +735,6 @@ function handleVideoClick(event) {
       parentDiv.classList.add("pop-out-div");
     }
   }
-
 }
 
 // Add event listener to the videoContainer for click events

@@ -30,41 +30,6 @@
         const params = new URLSearchParams(location.search);
         if (!params.get("room")) location.href = "/";
     </script>
-    <!-- <script>
-        // Function to get the stored JWT token from LocalStorage
-        function getToken() {
-            return localStorage.getItem("token");
-        }
-
-        // Function to handle protected API requests
-        function handleProtectedRequest() {
-            const token = getToken();
-            if (!token) {
-                console.log("No token found in LocalStorage.");
-                return;
-            }
-
-            fetch("/auth/signup", {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                },
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    // Handle the response data here
-                    console.log("Response from protected API:", data);
-                })
-                .catch((error) => {
-                    // Handle fetch error if any
-                    console.log("Error occurred during protected API request:", error);
-                });
-        }
-
-        // Call the function to make the protected API request
-        handleProtectedRequest();
-    </script> -->
 </head>
 
 <body style="visibility: hidden;">
@@ -84,7 +49,7 @@
                     </video>
                     <div class="nametag" id="myname">yourname</div>
                     <div class="mute-icon" id="mymuteicon"><i class="fas fa-microphone-slash"></i></div>
-                    <div class="video-off" id="myvideooff">Video Off</div>
+                    <div class="video-off" id="myvideooff"><i class="fas fa-video-slash"></i></div>
                 </div>
             </div>
 
