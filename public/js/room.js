@@ -154,7 +154,8 @@ mymuteicon.style.visibility = "hidden";
 let myvideooff = document.querySelector("#myvideooff");
 myvideooff.style.visibility = "hidden";
 
-const configuration = { iceServers: [{ urls: "turn:turn01.hubl.in?transport=udp" }] };
+const configuration = { iceServers: [{ urls: "TURN:freeturn.net:3478" }] };
+// const configuration = { iceServers: [{ urls: "turn:turn01.hubl.in?transport=udp" }] };
 // const configuration = { iceServers: [{ urls: "stun:stun.stunprotocol.org" }] };
 
 const mediaConstraints = { video: true, audio: true };
