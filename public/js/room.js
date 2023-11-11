@@ -154,7 +154,15 @@ mymuteicon.style.visibility = "hidden";
 let myvideooff = document.querySelector("#myvideooff");
 myvideooff.style.visibility = "hidden";
 
-const configuration = { iceServers: [{ urls: 'turn:openrelay.metered.ca:80', username: 'openrelayproject', credential: 'openrelayproject' }] };
+var configuration = {};
+
+(async() => {
+  const response = await fetch("https://vmeet.metered.live/api/v1/turn/credentials?apiKey=bde4d2d415a2844da297d68e9cc2bdbfd6ba");
+  const iceServers = await response.json();
+  configuration.iceServers = iceServers
+})();
+
+// const configuration = { iceServers: [{ urls: 'turn:openrelay.metered.ca:80', username: 'openrelayproject', credential: 'openrelayproject' }] };
 // const configuration = { iceServers: [{ urls: 'turns:freeturn.tel:5349', username: 'free', credential: 'free' }] };
 // const configuration = { iceServers: [{ urls: "turn:turn01.hubl.in?transport=udp" }] };
 // const configuration = { iceServers: [{ urls: "stun:stun.stunprotocol.org" }] };
