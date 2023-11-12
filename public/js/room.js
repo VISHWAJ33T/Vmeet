@@ -156,7 +156,7 @@ myvideooff.style.visibility = "hidden";
 
 var configuration = {};
 
-(async() => {
+(async () => {
   const response = await fetch("https://vmeet.metered.live/api/v1/turn/credentials?apiKey=bde4d2d415a2844da297d68e9cc2bdbfd6ba");
   const iceServers = await response.json();
   configuration.iceServers = iceServers
@@ -235,7 +235,7 @@ function handleGetUserMediaError(e) {
     case "NotFoundError":
       alert(
         "Unable to open your call because no camera and/or microphone" +
-          "were found."
+        "were found."
       );
       break;
     case "SecurityError":
@@ -258,13 +258,16 @@ function startCall() {
     .then((localStream) => {
       myvideo.srcObject = localStream;
       myvideo.muted = true;
-
+      console.log("localStream.getTracks()")
+      console.log(localStream.getTracks())
       localStream.getTracks().forEach((track) => {
         for (let key in connections) {
           connections[key].addTrack(track, localStream);
           if (track.kind === "audio") audioTrackSent[key] = track;
           else videoTrackSent[key] = track;
         }
+        console.log("connections");
+        console.log(connections);
       });
     })
     .catch(handleGetUserMediaError);
@@ -283,7 +286,7 @@ function handleVideoOffer(offer, sid, cname, micinf, vidinf) {
       socket.emit("new icecandidate", event.candidate, sid);
     }
   };
-
+  // ****************************************************************************Understood until here
   connections[sid].ontrack = function (event) {
     if (!document.getElementById(sid)) {
       console.log("track event fired");
@@ -731,19 +734,14 @@ function toggleSidebars() {
 // Function to handle the click event on video elements
 function handleVideoClick(event) {
   const clickedVideo = event.target;
+  console.log(clickedVideo.tagName)
   if (clickedVideo.tagName === "VIDEO") {
-    // Find the parent div and add the "pop-out-div" class to it
-    const parentDiv = clickedVideo.closest(".video-box");
-    if (parentDiv) {
-      // Remove "pop-out-div" class from all sibling video boxes
-      const siblingVideoBoxes =
-        parentDiv.parentElement.querySelectorAll(".video-box");
-      siblingVideoBoxes.forEach((box) => {
-        if (box !== parentDiv && box.classList.contains("pop-out-div")) {
-          box.classList.remove("pop-out-div");
-        }
-      });
-      parentDiv.classList.add("pop-out-div");
+    if (clickedVideo.requestFullScreen) {
+      clickedVideo.requestFullScreen();
+    } else if (clickedVideo.webkitRequestFullScreen) {
+      clickedVideo.webkitRequestFullScreen();
+    } else if (clickedVideo.mozRequestFullScreen) {
+      clickedVideo.mozRequestFullScreen();
     }
   }
 }
@@ -751,19 +749,44 @@ function handleVideoClick(event) {
 // Add event listener to the videoContainer for click events
 videoContainer.addEventListener("click", handleVideoClick);
 
-// Function to handle the click event on the document
-function handleDocumentClick(event) {
-  const clickedElement = event.target;
-  // Find the parent div with the class "video-box"
-  const parentDiv = clickedElement.closest(".video-box");
-  if (!parentDiv) {
-    // If the click target is not inside the parent div, remove the "pop-out-div" class from all video boxes
-    const videoBoxes = document.querySelectorAll(".video-box");
-    videoBoxes.forEach((box) => {
-      box.classList.remove("pop-out-div");
-    });
-  }
-}
+
+// // Function to handle the click event on video elements
+// function handleVideoClick(event) {
+//   const clickedVideo = event.target;
+//   if (clickedVideo.tagName === "VIDEO") {
+//     // Find the parent div and add the "pop-out-div" class to it
+//     const parentDiv = clickedVideo.closest(".video-box");
+//     if (parentDiv) {
+//       // Remove "pop-out-div" class from all sibling video boxes
+//       const siblingVideoBoxes =
+//         parentDiv.parentElement.querySelectorAll(".video-box");
+//       siblingVideoBoxes.forEach((box) => {
+//         if (box !== parentDiv && box.classList.contains("pop-out-div")) {
+//           box.classList.remove("pop-out-div");
+//         }
+//       });
+//       parentDiv.classList.add("pop-out-div");
+//     }
+//   }
+// }
+
+// // Add event listener to the videoContainer for click events
+// videoContainer.addEventListener("click", handleVideoClick);
+
+
+// // Function to handle the click event on the document
+// function handleDocumentClick(event) {
+//   const clickedElement = event.target;
+//   // Find the parent div with the class "video-box"
+//   const parentDiv = clickedElement.closest(".video-box");
+//   if (!parentDiv) {
+//     // If the click target is not inside the parent div, remove the "pop-out-div" class from all video boxes
+//     const videoBoxes = document.querySelectorAll(".video-box");
+//     videoBoxes.forEach((box) => {
+//       box.classList.remove("pop-out-div");
+//     });
+//   }
+// }
 
 // Add event listener to the document for click events
-document.addEventListener("click", handleDocumentClick);
+// document.addEventListener("click", handleDocumentClick);
